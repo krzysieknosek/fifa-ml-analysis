@@ -6,7 +6,7 @@ import pandas as pd
 matplotlib.use('TkAgg')
 
 
-FILE_NAME = 'players_22.csv'
+FILE_NAME = '../players_22.csv'
 DATA_FRAME = None
 
 
