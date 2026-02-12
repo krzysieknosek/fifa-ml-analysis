@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from CSVHandler import csvToMartixes
 import numpy as np
 from sklearn.metrics import mean_squared_error
@@ -10,9 +12,13 @@ def model(params, x):
     return a * x + b
 
 
-# Load data
-x, y, x_norm, x_std = csvToMartixes(r"C:\Users\krzys\Desktop\MSID\players_22.csv")
+current_dir = Path(__file__).resolve().parent
 
+root_dir = current_dir.parent
+
+DATA_PATH = root_dir / "players_22.csv"
+
+x, y, x_norm, x_std = csvToMartixes(str(DATA_PATH))
 
 # Split into sets
 x_trainval, x_eval, y_trainval, y_eval = train_test_split(x_norm, y, test_size=0.2, random_state=42)

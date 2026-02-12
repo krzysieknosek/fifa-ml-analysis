@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import pandas as pd
 import numpy as np
 import time
@@ -9,7 +11,9 @@ import torch.nn as nn
 import torch.optim as optim
 
 # Loading data
-df = pd.read_csv(r"C:\Users\krzys\Desktop\MSID\players_22.csv", low_memory=False)
+DATA_PATH = Path(__file__).resolve().parent.parent / "players_22.csv"
+df = pd.read_csv(DATA_PATH, low_memory=False)
+
 df = df.dropna(subset=['club_position', 'pace', 'shooting', 'passing', 'dribbling', 'defending', 'physic'])
 
 X = df[['pace', 'shooting', 'passing', 'dribbling', 'defending', 'physic']].values.astype(np.float32)

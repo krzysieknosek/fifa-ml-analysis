@@ -3,6 +3,7 @@ import numpy as np
 from sklearn.model_selection import KFold
 from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split
+from pathlib import Path
 
 
 def model(params, x):
@@ -29,8 +30,8 @@ def gradientDescent(x, y, lr=0.01, epochs=1000, l1=0.0, l2=0.0):
 
 
 # Load data
-x, y, x_norm, x_std = csvToSampledMartixes(r"C:\Users\krzys\Desktop\MSID\CZĘŚĆ III\players_22.csv",
-                                           'oversampled')
+DATA_PATH = Path(__file__).resolve().parent.parent / "players_22.csv"
+x, y, x_norm, x_std = csvToSampledMartixes(str(DATA_PATH), 'oversampled')
 
 
 # Split into sets

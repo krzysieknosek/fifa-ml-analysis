@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import pandas as pd
 
 # Pipeline & processing imports
@@ -35,7 +37,8 @@ preprocessor = ColumnTransformer([
 ])
 
 # Importing and splitting data from CSV file
-df = pd.read_csv(r"C:\Users\krzys\Desktop\MSID\CZĘŚĆ III\players_22.csv", low_memory=False)
+DATA_PATH = Path(__file__).resolve().parent.parent / "players_22.csv"
+df = pd.read_csv(DATA_PATH, low_memory=False)
 
 necessary_columns = num_columns + cat_columns + ['overall']
 df = df[necessary_columns].dropna(subset=['overall'])

@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from CSVHandler import csvToMartixes
 import numpy as np
 import time
@@ -30,8 +32,13 @@ def gradientDescent(x, y, lr=0.01, epochs=1000):
 
 
 # Load data
-x, y, x_norm, x_std = csvToMartixes(r"C:\Users\krzys\Desktop\MSID\players_22.csv")
+current_dir = Path(__file__).resolve().parent
 
+root_dir = current_dir.parent
+
+DATA_PATH = root_dir / "players_22.csv"
+
+x, y, x_norm, x_std = csvToMartixes(str(DATA_PATH))
 # Data split
 x_trainval, x_eval, y_trainval, y_eval = train_test_split(x_norm, y, test_size=0.2, random_state=42)
 x_train, x_val, y_train, y_val = train_test_split(x_trainval, y_trainval, test_size=0.25, random_state=42)

@@ -1,5 +1,6 @@
 # linear_regression_convergence_monitor 2_raw rozszerza model regresji liniowej z wykorzystaniem gradient descent z II części projektu
 # o liczenie błędu MSE co każdą epokę, a następnie rysowanie wykresu błedu na przestrzeni epok
+from pathlib import Path
 
 # plik polynomial_regression_convergence rozszerza plik linear_regression_convergence_monitor o wykorzystanie PolynomialFeatures w celu rozbudowania modelu
 
@@ -41,7 +42,10 @@ def gradientDescent(x_train, y_train, x_val, y_val, lr=0.01, epochs=1000):
 
 
 # Load data
-x, y, x_norm, x_std = csvToMartixes(r"C:\Users\krzys\Desktop\MSID\CZĘŚĆ III\players_22.csv")
+current_dir = Path(__file__).resolve().parent
+root_dir = current_dir.parent
+DATA_PATH = root_dir / "players_22.csv"
+x, y, x_norm, x_std = csvToMartixes(str(DATA_PATH))
 
 # Data split
 x_trainval, x_eval, y_trainval, y_eval = train_test_split(x_norm, y, test_size=0.2, random_state=42)

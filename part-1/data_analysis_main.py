@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import matplotlib
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -6,7 +8,12 @@ import pandas as pd
 matplotlib.use('TkAgg')
 
 
-FILE_NAME = '../players_22.csv'
+CURRENT_FILE = Path(__file__).resolve()
+
+PROJECT_ROOT = CURRENT_FILE.parent.parent
+
+FILE_PATH = PROJECT_ROOT / "players_22.csv"
+
 DATA_FRAME = None
 
 
@@ -100,7 +107,7 @@ def draw_an_estimated_regression_fit(trait1, trait2):
 
 if __name__ == '__main__':
 
-    DATA_FRAME = load_data(FILE_NAME)
+    DATA_FRAME = load_data(FILE_PATH)
 
     if DATA_FRAME is not None:
 
